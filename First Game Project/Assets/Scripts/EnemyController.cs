@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : player
+public class EnemyController : MonoBehaviour
 {
     private Animator animator;
 
-    private void Awake()
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public Healthbar healthbar;
+    private void Start()
     {
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
         StartCoroutine(NextWave());
         // animator = GetComponent<Animator>();
 
@@ -17,6 +23,7 @@ public class EnemyController : player
         if(currentHealth == 0)
         {
             Destroy(gameObject);
+            GameManager.Instance.gold += 10;
             Debug.Log("Enemey Killed!");
         }
     }
@@ -33,10 +40,16 @@ public class EnemyController : player
     }
     IEnumerator NextWave()
     {
-        while (true)
+        for(int i = 0; i <= 10; i++)
         {
-            yield return new WaitForSeconds(GameManager.Instance.difficulty);
             transform.Translate(Vector3.forward * 2);
+            yield return new WaitForSeconds(2.0f);
         }
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthbar.SetHealth(currentHealth);
     }
 }
