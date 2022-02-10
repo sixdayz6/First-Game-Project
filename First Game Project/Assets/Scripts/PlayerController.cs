@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float verticalInput;
-    [SerializeField]
-    float horizontalInput;
+    [SerializeField]    float verticalInput;
+    [SerializeField]    float horizontalInput;
 
     public GameObject bulletPref;
+    public float fireRate;
     private Vector3 pos;
 
+
+    private void Awake() {
+        fireRate = GameManager.Instance.fireRate;
+    }
     private void Start()
     {
+
         StartCoroutine("CreateBullet");
+
     }
 
     private void Update()
@@ -35,9 +40,14 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(fireRate);
             Instantiate<GameObject>(bulletPref, pos, Quaternion.identity);
 
         }
+    }
+
+    public void SpeedUpFireRate(){
+        fireRate -= 0.2f;
+
     }
 }

@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        spawnRate = GameManager.Instance.difficulty;
+        spawnRate = 2.0f;
         Xrandom[0] = -4;
         Xrandom[1] = -2;
         Xrandom[2] = 0;
@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine("CreateEnemy");
     }
 
-    // ÀûÀ» z=20f¿¡¼­ ·»´ýÇÑ À§Ä¡¿¡ ¼ÒÈ¯ÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ z=20fï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     IEnumerator CreateEnemy()
     {
         while (true)
@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // ¹«ÀÛÀ§ xÃà °ªÀ» »ý¼ºÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     Vector3 GenerateRandomPosition
     {
         get
